@@ -1,0 +1,85 @@
+---
+---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ page.title }}</title>
+        <link href="{{ 'assets/css/style.css' | relative_url }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="https://bakaq.net">Site</a></li>
+                    <li><a href="{{ '/' | relative_url }}">Posts</a></li>
+                    <li><a href="https://github.com/bakaq">Github</a></li>
+                </ul>
+                <label class="theme-switch">
+                    <input type="checkbox">
+                    <span class="theme-slider"></span>
+                </label>
+            </nav>
+
+            <main>
+                {{ content }}
+            </main>
+
+            <footer>
+                footer thing idk
+            </footer>
+            <script>
+                function toggleDarkMode() {
+                    if (document.documentElement.classList.contains("light")) {
+                        document.documentElement.classList.remove("light");
+                        document.documentElement.classList.add("dark");
+                        localStorage.setItem('theme', 'dark');
+                    } else if (document.documentElement.classList.contains("dark")) {
+                        document.documentElement.classList.remove("dark");
+                        document.documentElement.classList.add("light");
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        if (
+                            window.matchMedia &&
+                            window.matchMedia('(prefers-color-scheme: dark)').matches
+                        ) {
+                            document.documentElement.classList.add("light");
+                            localStorage.setItem('theme', 'light');
+                        } else {
+                            document.documentElement.classList.add("dark");
+                            localStorage.setItem('theme', 'dark');
+                        }
+                    }
+                }
+
+                document.querySelector(".theme-switch input")
+                    .addEventListener("click", toggleDarkMode);
+
+                function detectColorScheme() {
+                    console.log("Detecting");
+                    let theme = "light";
+
+                    if(localStorage.getItem("theme")){
+                        console.log("localstorage exists");
+                        if(localStorage.getItem("theme") === "dark"){
+                            theme = "dark";
+                        }
+                    } else if (!window.matchMedia) {
+                        return;
+                    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                        theme = "dark";
+                    }
+
+                    if (theme === "dark") {
+                        document.documentElement.classList.add("dark");
+                        document.querySelector(".theme-switch input").checked = true;
+                    } else {
+                        document.documentElement.classList.add("light");
+                    }
+                }
+                detectColorScheme();
+            </script>
+        </div>
+    </body>
+</html>

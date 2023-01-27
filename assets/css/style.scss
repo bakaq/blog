@@ -1,0 +1,149 @@
+---
+---
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark light;
+}
+
+:root, :root.light {
+    color: black;
+    --padding: 1rem;
+    --color-background: hsl(60, 25%, 80%);
+    --color-background-alt: hsl(325, 12%, 20%);
+    --color-link: hsl(290, 70%, 40%);
+    --color-link-hover: hsl(325, 70%, 55%);
+    --color-link-active: hsl(250, 90%, 60%);
+    @import "rouge-light-theme";
+}
+
+@mixin dark-theme {
+    color: white;
+    --color-background: hsl(325, 12%, 20%);
+    --color-background-alt: hsl(60, 25%, 80%);
+    --color-link: hsl(140, 70%, 55%);
+    --color-link-hover: hsl(60, 100%, 60%);
+    --color-link-active: hsl(60, 40%, 60%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include dark-theme;
+        @import "rouge-dark-theme";
+    }
+}
+
+:root.dark {
+    @include dark-theme;
+    @import "rouge-dark-theme";
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--color-link);
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+a:active {
+    color: var(--color-link-active);
+}
+
+nav {
+    margin: 0.5rem 0;
+    padding: var(--padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav > ul > li {
+    padding: 0 var(--padding) 0 0;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 2rem;
+    height: 1rem;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+}
+
+.theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-background-alt);
+    border-radius: 0.5rem;
+}
+
+.theme-slider:before {
+    position: absolute;
+    content: "";
+    height: 0.6rem;
+    width: 0.6rem;
+    left: 0.2rem;
+    bottom: 0.2rem;
+    background-color: var(--color-background);
+    border-radius: 50%;
+}
+
+input:checked + .theme-slider:before {
+    transform: translateX(0.8rem);
+}
+
+main {
+    margin: 0;
+    padding: 0 var(--padding);
+}
+
+footer {
+    text-align: center;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 70rem;
+}
+
+.posts {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.post-title {
+    margin-top: 0;
+}
