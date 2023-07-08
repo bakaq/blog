@@ -5,6 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% feed_meta %}
         <title>{{ page.title }}</title>
         <link href="{{ 'assets/css/style.css' | relative_url }}" rel="stylesheet">
     </head>
@@ -14,6 +15,7 @@
                 <ul>
                     <li><a href="https://bakaq.net">Site</a></li>
                     <li><a href="{{ '/' | relative_url }}">Posts</a></li>
+                    <li><a href="{{ '/feed.xml' | relative_url }}">Feed</a></li>
                     <li><a href="https://github.com/bakaq">Github</a></li>
                 </ul>
                 <label class="theme-switch">
