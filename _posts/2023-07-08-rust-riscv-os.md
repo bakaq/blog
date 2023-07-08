@@ -2,7 +2,6 @@
 layout: post
 title: Things I learned making a simple RISC-V OS with Rust
 ---
-<!-- vim: set textwidth=80 colorcolumn=80: -->
 
 Recently I've been reading a lot about RISC-V and wanted to use it for something
 to learn how it works. I decided to go ballistic and
